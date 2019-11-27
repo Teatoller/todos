@@ -1,4 +1,14 @@
 # Todo's application
+
+1. Create a folder on your machine `mkdir myproject`
+2. `cd myproject`
+3. Run `git clone https://github.com/Teatoller/todos.git`
+4. cd `todos`
+5. open **todos** in your chosen editor. For **vscode** enter `code .` on terminal and press enter.
+6. `git checkout ft-project-setup-001`
+7. Run `composer install`
+8. Run `php artisan serve`  the app in the development mode to open [ http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view it in the browser.
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
