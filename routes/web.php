@@ -28,10 +28,46 @@
 
 Route::resource('todos', 'TodosController');
 
-
 /**
  * This route is to test on browser if the db is connected successfully
  */
+// Route::get('/db', function () {
+//     return DB::select('select database();');
+// });
+
+/**
+ * Playing about with db connection
+ */
+
+ /**
+  * Show tables in db
+  */
+
+// Route::get('/db', function () {
+//     return DB::select('show tables;');
+// });
+
+
+/**
+ * Insert records and return db
+ */
+// Route::get('/db', function () {
+//     DB::table('todo_list')
+//     ->insert(
+//         [
+//             'name' => 'Fay', 
+//             'Last_name' => 'Wendy'
+//             ]
+//         );
+//     return DB::table('todo_list')->get();
+// });
+
+/**
+ * Get records in db
+ */
+
 Route::get('/db', function () {
-    return DB::select('select database();');
+    $results = DB::table('todo_list')->where('name','Nigel')->first();
+    return $results->last_name;
 });
+
