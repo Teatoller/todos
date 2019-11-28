@@ -13,7 +13,8 @@ class TodosController extends Controller
      */
     public function index()
     {
-        return view::make('todos');
+        
+        return view('todos.index');
     }
 
     /**
@@ -45,7 +46,7 @@ class TodosController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('todos.show')->with('id', $id);
     }
 
     /**
