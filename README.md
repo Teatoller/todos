@@ -10,6 +10,8 @@
 8. Run `composer install`
 9. Run `php artisan serve`  the app in the development mode to open [ http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view it in the browser.
 
+10. Endpoints /todos, /todos/{id}, /todos/create
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">

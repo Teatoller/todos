@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
 
-<h1>Show List With Id = {{{$id}}}</h1>
+<h1>{{{ $list->name }}}</h1>
 
 @endsection
