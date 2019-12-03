@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TodoList;
 use Illuminate\Http\Request;
 
 class TodosController extends Controller
@@ -13,8 +14,8 @@ class TodosController extends Controller
      */
     public function index()
     {
-        
-        return view('todos.index');
+        $todo_lists = TodoList::all();
+        return view('todos.index')->with('todo_lists', $todo_lists);
     }
 
     /**
@@ -24,7 +25,15 @@ class TodosController extends Controller
      */
     public function create()
     {
-        //
+        $list = new TodoList();
+        $list->id = 4;
+        $list->name = "Another List";
+        $list->created_at = "2019-06-05";
+        $list->updated_at = "2019-06-05";
+
+        $list->save();
+
+        return $list;
     }
 
     /**
@@ -46,7 +55,8 @@ class TodosController extends Controller
      */
     public function show($id)
     {
-        return view('todos.show')->with('id', $id);
+        $list = TodoList::findOrFail($id);
+        return view('todos.show')->with('list', $list);
     }
 
     /**
