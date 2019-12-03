@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TodoList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TodosController extends Controller
 {
@@ -36,13 +37,21 @@ class TodosController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input('title');
+        $rules = array('name' => ['required','unique:todo_lists,name', 'max:255']);
+        $validator = Validator::make($request->all(), $rules);
 
+        if($validator->fails()){
+            return redirect()->route('todos.create')->withErrors($validator)->withInput();
+        } 
+        
+        $name = $request->input('name');
         $list = new TodoList();
         $list->name = $name;
         $list->save();
 
-        return redirect()->route('todos.index');
+        return redirect()->route('todos.index')->with('message', 'Todo List Created Succesfully');
+
+
     }
 
     /**
