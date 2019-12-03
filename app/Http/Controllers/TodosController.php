@@ -25,15 +25,7 @@ class TodosController extends Controller
      */
     public function create()
     {
-        $list = new TodoList();
-        $list->id = 4;
-        $list->name = "Another List";
-        $list->created_at = "2019-06-05";
-        $list->updated_at = "2019-06-05";
-
-        $list->save();
-
-        return $list;
+        return view('todos.create');
     }
 
     /**
@@ -44,7 +36,13 @@ class TodosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->input('title');
+
+        $list = new TodoList();
+        $list->name = $name;
+        $list->save();
+
+        return redirect()->route('todos.index');
     }
 
     /**
