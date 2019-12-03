@@ -11,9 +11,9 @@
 |
  */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 /**
  * get('/todos', 'TodosController@index');
@@ -25,6 +25,9 @@
  * delete('/todo/{todos}', 'TodosController@destroy');
 
  */
+
+// Route::get('/', 'TodosController@index');
+
 
 Route::resource('todos', 'TodosController');
 
