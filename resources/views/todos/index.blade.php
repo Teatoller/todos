@@ -7,8 +7,10 @@
 <ul class="no-bullet button-group success tiny button">
     <li><a href="/todos/{{$list->id}}/edit">Edit/Delete</a></li>
 </ul>
+<br/>
 @endforeach
-
+<div>
 <button class="success"><a href="/todos/create">Create New Todo</a></button>
+</div>
 
 @endsection
