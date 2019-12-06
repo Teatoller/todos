@@ -63,7 +63,11 @@ class TodosController extends Controller
     public function show($id)
     {
         $list = TodoList::findOrFail($id);
-        return view('todos.show')->with('list', $list);
+        $items = $list->todoItems()->get();
+        // return $items;
+        return view('todos.show')
+        ->with('list', $list)
+        ->with('items', $items);
     }
 
     /**
