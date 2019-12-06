@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\TodoList;
+use App\TodoItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class TodosController extends Controller
+class TodoItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class TodosController extends Controller
      */
     public function index()
     {
-        $todo_lists = TodoList::all();
-        return view('todos.index')->with('todo_lists', $todo_lists);
+        //
     }
 
     /**
@@ -26,7 +25,7 @@ class TodosController extends Controller
      */
     public function create()
     {
-        return view('todos.create');
+        // return view('todos.create');
     }
 
     /**
@@ -37,20 +36,24 @@ class TodosController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array('name' => ['required', 'unique:todo_lists,name', 'max:255']);
+        $rules = array(
+            'content' => ['required', 'unique:todo_items,content', 'max:255'],
+        );
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return redirect()->route('todos.create')->withErrors($validator)->withInput();
+            return redirect()->route('todos.show')->withErrors($validator)->withInput();
         }
+        $content = $request->input('content');
+        $todo_list_id = $request->input('todo_list_id');
 
-        $name = $request->input('name');
-        $list = new TodoList();
-        $list->name = $name;
-        $list->save();
+        $item = new TodoItem();
 
-        return redirect()->route('todos.index')->with('message', 'Todo List Created Succesfully');
+        $item->content = $content;
+        $item->todo_list_id = $todo_list_id;
+        $item->save();
 
+        return redirect()->route('todos.index')->with('message', 'Todo Item Created Succesfully');
     }
 
     /**
@@ -61,12 +64,7 @@ class TodosController extends Controller
      */
     public function show($id)
     {
-        $list = TodoList::findOrFail($id);
-        $items = $list->todoItems()->get();
-        // return $items;
-        return view('todos.show')
-            ->with('list', $list)
-            ->with('items', $items);
+        //
     }
 
     /**
@@ -77,8 +75,8 @@ class TodosController extends Controller
      */
     public function edit($id)
     {
-        $list = TodoList::findOrFail($id);
-        return view('todos.edit')->with('list', $list);
+        $item = TodoItem::findOrFail($id);
+        return view('todos.todoEdit')->with('item', $item);
     }
 
     /**
@@ -90,16 +88,16 @@ class TodosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = array('name' => ['required', 'unique:todo_lists,name', 'max:255']);
+        $rules = array('content' => ['required', 'unique:todo_items,content', 'max:255']);
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return redirect()->route('todos.edit', $id)->withErrors($validator)->withInput();
+            return redirect()->route('tasks.edit', $id)->withErrors($validator)->withInput();
         }
 
-        $list = TodoList::findOrFail($id);
+        $item = TodoItem::findOrFail($id);
 
-        $list->update(request(['name']));
+        $item->update(request(['content']));
         return redirect()->route('todos.index')->with('message', 'Todo Item Succesfully Updated');
 
     }
@@ -112,9 +110,6 @@ class TodosController extends Controller
      */
     public function destroy($id)
     {
-        $list = TodoList::findOrFail($id);
-
-        $list->delete();
-        return redirect()->route('todos.index')->with('message', 'Todo item Succesfully Deleted');
+        //
     }
 }
