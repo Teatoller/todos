@@ -5,9 +5,8 @@
 @foreach($todo_lists as $list)
 <h4><a href="/todos/{{$list->id}}">{{$list->name}}</a></h4>
 <ul class="no-bullet button-group success tiny button">
-    <li><a href="/todos/{{$list->id}}/edit">Edit/Delete</a></li>
+    <li><a href="/todos/{{$list->id}}/edit">Edit/Delete</a></li><br />
 </ul>
-<br/>
 @endforeach
 <div>
 <button class="success"><a href="/todos/create">Create New Todo</a></button>
