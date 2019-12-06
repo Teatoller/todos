@@ -15,6 +15,8 @@
 <div>
 <button class="button-group alert" type="submit" value="submit">Delete</button>
 </div>
+<h4><a href="/todos">Back to todos</a></h4>
+
 </form>
 
 
