@@ -30,6 +30,8 @@ Route::get('/', function () {
 
 
 Route::resource('todos', 'TodosController');
+Route::resource('tasks', 'TodoItemController');
+
 
 /**
  * This route is to test on browser if the db is connected successfully

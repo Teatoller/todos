@@ -17,4 +17,5 @@ class TodoList extends Model
     {
         return $this->hasMany('App\TodoItem');
     }
+
 }
