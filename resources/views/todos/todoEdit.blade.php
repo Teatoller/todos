@@ -3,7 +3,7 @@
 <form method="POST" action="http://127.0.0.1:8000/tasks/{{$item->id}}" accept-charset="UTF-8">
     @method('PATCH')
 @csrf
-<label for="content"><strong>Smile</strong></label>
+<label for="content"><strong>To-do Item</strong></label>
 <input name="content" type="text" id="content" placeholder="content" value="{{ $item->content }}">
 {{{$errors->first('content', ':message')}}} <br/>
 <button class="button" type="submit" value="submit">Update</button>

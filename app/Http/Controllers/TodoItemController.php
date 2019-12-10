@@ -110,6 +110,9 @@ class TodoItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = TodoItem::findOrFail($id);
+
+        $item->delete();
+        return redirect()->route('todos.index')->with('message', 'Todo item Succesfully Deleted');
     }
 }
