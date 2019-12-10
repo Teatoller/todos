@@ -5,7 +5,7 @@
 <h1>{{{ $list->name }}}</h1>
 @foreach($items as $item)
 <h4>{{{ $item->content }}}</h4>
-<ul class="no-bullet button-group success tiny button">
+<ul class="no-bullet button-group success tiny button" style="background-color: orange;">
     <li><a href="/tasks/{{$item->id}}/edit">Edit/Delete</a></li><br />
 </ul>
 @endforeach
